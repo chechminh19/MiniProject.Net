@@ -28,14 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            label1 = new Label();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             dgvKho = new DataGridView();
-            Exit = new Button();
-            Add = new Button();
-            Edit = new Button();
-            Delete = new Button();
-            menuStrip1 = new MenuStrip();
             panel1 = new Panel();
             btnChemicals = new Button();
             btnCanned = new Button();
@@ -52,107 +46,65 @@
             btnAlcoho = new Button();
             btnSnack = new Button();
             btnRefresh = new Button();
+            label6 = new Label();
+            label7 = new Label();
+            label5 = new Label();
+            txtPrice = new TextBox();
+            label4 = new Label();
+            txtQuantity = new TextBox();
+            txtDes = new TextBox();
+            txtUnit = new TextBox();
+            label3 = new Label();
+            cbCategory = new ComboBox();
+            txtName = new TextBox();
+            label2 = new Label();
+            panel2 = new Panel();
+            btnExit = new Button();
+            Edit = new Button();
+            Delete = new Button();
+            Add = new Button();
             btnSearch = new Button();
             txtSearchKho = new TextBox();
-            panel2 = new Panel();
-            label2 = new Label();
-            txtName = new TextBox();
-            cbCategory = new ComboBox();
-            label3 = new Label();
-            txtUnit = new TextBox();
-            txtDes = new TextBox();
-            txtQuantity = new TextBox();
-            label4 = new Label();
-            txtPrice = new TextBox();
-            label5 = new Label();
-            label7 = new Label();
-            label6 = new Label();
+            panel3 = new Panel();
+            label8 = new Label();
+            panel4 = new Panel();
+            label1 = new Label();
+            panel5 = new Panel();
+            txtRole = new TextBox();
+            txtName1 = new TextBox();
+            txtId = new TextBox();
+            label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvKho).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
+            panel4.SuspendLayout();
+            panel5.SuspendLayout();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = SystemColors.Control;
-            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(9, 9);
-            label1.Margin = new Padding(0);
-            label1.Name = "label1";
-            label1.Size = new Size(271, 31);
-            label1.TabIndex = 0;
-            label1.Text = "Information Merchandise";
             // 
             // dgvKho
             // 
-            dgvKho.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Times New Roman", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvKho.DefaultCellStyle = dataGridViewCellStyle2;
-            dgvKho.Location = new Point(628, 150);
+            dgvKho.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvKho.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvKho.ColumnHeadersHeight = 29;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Times New Roman", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dgvKho.DefaultCellStyle = dataGridViewCellStyle1;
+            dgvKho.Location = new Point(437, 272);
             dgvKho.Name = "dgvKho";
+            dgvKho.ReadOnly = true;
             dgvKho.RowHeadersWidth = 51;
             dgvKho.RowTemplate.Height = 29;
-            dgvKho.Size = new Size(862, 530);
+            dgvKho.Size = new Size(730, 370);
             dgvKho.TabIndex = 1;
             dgvKho.CellDoubleClick += dgvKho_CellDoubleClick_1;
-            // 
-            // Exit
-            // 
-            Exit.Location = new Point(283, 11);
-            Exit.Name = "Exit";
-            Exit.Size = new Size(107, 29);
-            Exit.TabIndex = 2;
-            Exit.Text = "Exit";
-            Exit.UseVisualStyleBackColor = true;
-            // 
-            // Add
-            // 
-            Add.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            Add.Location = new Point(9, 92);
-            Add.Name = "Add";
-            Add.Size = new Size(128, 52);
-            Add.TabIndex = 3;
-            Add.Text = "Add";
-            Add.UseVisualStyleBackColor = true;
-            Add.Click += Add_Click_1;
-            // 
-            // Edit
-            // 
-            Edit.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            Edit.Location = new Point(142, 92);
-            Edit.Name = "Edit";
-            Edit.Size = new Size(124, 52);
-            Edit.TabIndex = 4;
-            Edit.Text = "Edit";
-            Edit.UseVisualStyleBackColor = true;
-            Edit.Click += Edit_Click;
-            // 
-            // Delete
-            // 
-            Delete.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            Delete.Location = new Point(272, 92);
-            Delete.Name = "Delete";
-            Delete.Size = new Size(121, 52);
-            Delete.TabIndex = 5;
-            Delete.Text = "Delete";
-            Delete.UseVisualStyleBackColor = true;
-            Delete.Click += Delete_Click_1;
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1494, 24);
-            menuStrip1.TabIndex = 7;
-            menuStrip1.Text = "menuStrip1";
             // 
             // panel1
             // 
@@ -170,14 +122,15 @@
             panel1.Controls.Add(btnBeverage);
             panel1.Controls.Add(btnAlcoho);
             panel1.Controls.Add(btnSnack);
-            panel1.Location = new Point(425, 116);
+            panel1.Location = new Point(462, 55);
             panel1.Name = "panel1";
-            panel1.Size = new Size(201, 611);
+            panel1.Size = new Size(700, 168);
             panel1.TabIndex = 8;
             // 
             // btnChemicals
             // 
-            btnChemicals.Location = new Point(103, 525);
+            btnChemicals.Cursor = Cursors.Hand;
+            btnChemicals.Location = new Point(603, 14);
             btnChemicals.Name = "btnChemicals";
             btnChemicals.Size = new Size(94, 66);
             btnChemicals.TabIndex = 13;
@@ -187,7 +140,8 @@
             // 
             // btnCanned
             // 
-            btnCanned.Location = new Point(3, 525);
+            btnCanned.Cursor = Cursors.Hand;
+            btnCanned.Location = new Point(603, 86);
             btnCanned.Name = "btnCanned";
             btnCanned.Size = new Size(94, 66);
             btnCanned.TabIndex = 12;
@@ -197,7 +151,8 @@
             // 
             // btnCigarette
             // 
-            btnCigarette.Location = new Point(3, 356);
+            btnCigarette.Cursor = Cursors.Hand;
+            btnCigarette.Location = new Point(3, 86);
             btnCigarette.Name = "btnCigarette";
             btnCigarette.Size = new Size(94, 66);
             btnCigarette.TabIndex = 11;
@@ -207,7 +162,8 @@
             // 
             // btnFrozen
             // 
-            btnFrozen.Location = new Point(103, 438);
+            btnFrozen.Cursor = Cursors.Hand;
+            btnFrozen.Location = new Point(203, 86);
             btnFrozen.Name = "btnFrozen";
             btnFrozen.Size = new Size(94, 66);
             btnFrozen.TabIndex = 10;
@@ -217,7 +173,8 @@
             // 
             // btnOffice
             // 
-            btnOffice.Location = new Point(103, 356);
+            btnOffice.Cursor = Cursors.Hand;
+            btnOffice.Location = new Point(103, 86);
             btnOffice.Name = "btnOffice";
             btnOffice.Size = new Size(94, 66);
             btnOffice.TabIndex = 9;
@@ -227,7 +184,8 @@
             // 
             // btnTissue
             // 
-            btnTissue.Location = new Point(3, 438);
+            btnTissue.Cursor = Cursors.Hand;
+            btnTissue.Location = new Point(303, 86);
             btnTissue.Name = "btnTissue";
             btnTissue.Size = new Size(94, 66);
             btnTissue.TabIndex = 8;
@@ -237,7 +195,8 @@
             // 
             // btnSpices
             // 
-            btnSpices.Location = new Point(103, 267);
+            btnSpices.Cursor = Cursors.Hand;
+            btnSpices.Location = new Point(503, 86);
             btnSpices.Name = "btnSpices";
             btnSpices.Size = new Size(94, 66);
             btnSpices.TabIndex = 7;
@@ -247,7 +206,8 @@
             // 
             // btnMilk
             // 
-            btnMilk.Location = new Point(3, 267);
+            btnMilk.Cursor = Cursors.Hand;
+            btnMilk.Location = new Point(503, 14);
             btnMilk.Name = "btnMilk";
             btnMilk.Size = new Size(94, 66);
             btnMilk.TabIndex = 6;
@@ -257,7 +217,8 @@
             // 
             // btnMedicine
             // 
-            btnMedicine.Location = new Point(103, 183);
+            btnMedicine.Cursor = Cursors.Hand;
+            btnMedicine.Location = new Point(403, 14);
             btnMedicine.Name = "btnMedicine";
             btnMedicine.Size = new Size(94, 66);
             btnMedicine.TabIndex = 5;
@@ -267,7 +228,8 @@
             // 
             // btnPersonal
             // 
-            btnPersonal.Location = new Point(3, 183);
+            btnPersonal.Cursor = Cursors.Hand;
+            btnPersonal.Location = new Point(403, 86);
             btnPersonal.Name = "btnPersonal";
             btnPersonal.Size = new Size(94, 66);
             btnPersonal.TabIndex = 4;
@@ -277,7 +239,8 @@
             // 
             // btnInstant
             // 
-            btnInstant.Location = new Point(103, 94);
+            btnInstant.Cursor = Cursors.Hand;
+            btnInstant.Location = new Point(203, 14);
             btnInstant.Name = "btnInstant";
             btnInstant.Size = new Size(94, 66);
             btnInstant.TabIndex = 3;
@@ -287,7 +250,8 @@
             // 
             // btnBeverage
             // 
-            btnBeverage.Location = new Point(3, 94);
+            btnBeverage.Cursor = Cursors.Hand;
+            btnBeverage.Location = new Point(303, 14);
             btnBeverage.Name = "btnBeverage";
             btnBeverage.Size = new Size(94, 66);
             btnBeverage.TabIndex = 2;
@@ -297,6 +261,7 @@
             // 
             // btnAlcoho
             // 
+            btnAlcoho.Cursor = Cursors.Hand;
             btnAlcoho.Location = new Point(103, 14);
             btnAlcoho.Name = "btnAlcoho";
             btnAlcoho.Size = new Size(94, 66);
@@ -307,6 +272,7 @@
             // 
             // btnSnack
             // 
+            btnSnack.Cursor = Cursors.Hand;
             btnSnack.Location = new Point(3, 14);
             btnSnack.Name = "btnSnack";
             btnSnack.Size = new Size(94, 66);
@@ -317,31 +283,122 @@
             // 
             // btnRefresh
             // 
-            btnRefresh.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            btnRefresh.Location = new Point(628, 92);
+            btnRefresh.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRefresh.Location = new Point(1065, 226);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(121, 52);
+            btnRefresh.Size = new Size(97, 33);
             btnRefresh.TabIndex = 23;
             btnRefresh.Text = "Refresh";
             btnRefresh.UseVisualStyleBackColor = true;
             btnRefresh.Click += btnRefresh_Click;
             // 
-            // btnSearch
+            // label6
             // 
-            btnSearch.Location = new Point(9, 43);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(90, 43);
-            btnSearch.TabIndex = 24;
-            btnSearch.Text = "Search";
-            btnSearch.UseVisualStyleBackColor = true;
-            btnSearch.Click += btnSearch_Click;
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(11, 191);
+            label6.Name = "label6";
+            label6.Size = new Size(54, 28);
+            label6.TabIndex = 13;
+            label6.Text = "Unit ";
             // 
-            // txtSearchKho
+            // label7
             // 
-            txtSearchKho.Location = new Point(105, 52);
-            txtSearchKho.Name = "txtSearchKho";
-            txtSearchKho.Size = new Size(288, 27);
-            txtSearchKho.TabIndex = 25;
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(11, 242);
+            label7.Name = "label7";
+            label7.Size = new Size(97, 28);
+            label7.TabIndex = 14;
+            label7.Text = "Category ";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(11, 146);
+            label5.Name = "label5";
+            label5.Size = new Size(93, 28);
+            label5.TabIndex = 12;
+            label5.Text = "Quantity ";
+            // 
+            // txtPrice
+            // 
+            txtPrice.Cursor = Cursors.IBeam;
+            txtPrice.Location = new Point(153, 98);
+            txtPrice.Name = "txtPrice";
+            txtPrice.Size = new Size(209, 27);
+            txtPrice.TabIndex = 17;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(11, 98);
+            label4.Name = "label4";
+            label4.Size = new Size(59, 28);
+            label4.TabIndex = 11;
+            label4.Text = "Price ";
+            // 
+            // txtQuantity
+            // 
+            txtQuantity.Cursor = Cursors.IBeam;
+            txtQuantity.Location = new Point(153, 146);
+            txtQuantity.Name = "txtQuantity";
+            txtQuantity.Size = new Size(209, 27);
+            txtQuantity.TabIndex = 18;
+            // 
+            // txtDes
+            // 
+            txtDes.Cursor = Cursors.IBeam;
+            txtDes.Location = new Point(153, 56);
+            txtDes.Name = "txtDes";
+            txtDes.Size = new Size(209, 27);
+            txtDes.TabIndex = 16;
+            // 
+            // txtUnit
+            // 
+            txtUnit.Cursor = Cursors.IBeam;
+            txtUnit.Location = new Point(153, 191);
+            txtUnit.Name = "txtUnit";
+            txtUnit.Size = new Size(209, 27);
+            txtUnit.TabIndex = 19;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(11, 56);
+            label3.Name = "label3";
+            label3.Size = new Size(117, 28);
+            label3.TabIndex = 10;
+            label3.Text = "Description ";
+            // 
+            // cbCategory
+            // 
+            cbCategory.FormattingEnabled = true;
+            cbCategory.Location = new Point(153, 242);
+            cbCategory.Name = "cbCategory";
+            cbCategory.Size = new Size(209, 28);
+            cbCategory.TabIndex = 20;
+            // 
+            // txtName
+            // 
+            txtName.Cursor = Cursors.IBeam;
+            txtName.Location = new Point(153, 14);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(209, 27);
+            txtName.TabIndex = 15;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(11, 14);
+            label2.Name = "label2";
+            label2.Size = new Size(69, 28);
+            label2.TabIndex = 9;
+            label2.Text = "Name ";
             // 
             // panel2
             // 
@@ -357,132 +414,213 @@
             panel2.Controls.Add(label5);
             panel2.Controls.Add(label7);
             panel2.Controls.Add(label6);
-            panel2.Location = new Point(12, 155);
+            panel2.Location = new Point(12, 326);
             panel2.Name = "panel2";
-            panel2.Size = new Size(381, 445);
+            panel2.Size = new Size(381, 293);
             panel2.TabIndex = 26;
             // 
-            // label2
+            // btnExit
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(12, 14);
-            label2.Name = "label2";
-            label2.Size = new Size(81, 31);
-            label2.TabIndex = 9;
-            label2.Text = "Name ";
+            btnExit.Location = new Point(21, 20);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(107, 29);
+            btnExit.TabIndex = 2;
+            btnExit.Text = "Exit";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
-            // txtName
+            // Edit
             // 
-            txtName.Location = new Point(153, 14);
-            txtName.Name = "txtName";
-            txtName.Size = new Size(209, 27);
-            txtName.TabIndex = 15;
+            Edit.Cursor = Cursors.Hand;
+            Edit.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Edit.Location = new Point(145, 264);
+            Edit.Name = "Edit";
+            Edit.Size = new Size(110, 52);
+            Edit.TabIndex = 4;
+            Edit.Text = "Edit";
+            Edit.UseVisualStyleBackColor = true;
+            Edit.Click += Edit_Click;
             // 
-            // cbCategory
+            // Delete
             // 
-            cbCategory.FormattingEnabled = true;
-            cbCategory.Location = new Point(153, 242);
-            cbCategory.Name = "cbCategory";
-            cbCategory.Size = new Size(209, 28);
-            cbCategory.TabIndex = 20;
+            Delete.Cursor = Cursors.Hand;
+            Delete.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Delete.Location = new Point(275, 264);
+            Delete.Name = "Delete";
+            Delete.Size = new Size(102, 52);
+            Delete.TabIndex = 5;
+            Delete.Text = "Delete";
+            Delete.UseVisualStyleBackColor = true;
+            Delete.Click += Delete_Click_1;
             // 
-            // label3
+            // Add
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(12, 56);
-            label3.Name = "label3";
-            label3.Size = new Size(137, 31);
-            label3.TabIndex = 10;
-            label3.Text = "Description ";
+            Add.Cursor = Cursors.Hand;
+            Add.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Add.Location = new Point(12, 264);
+            Add.Name = "Add";
+            Add.Size = new Size(111, 52);
+            Add.TabIndex = 3;
+            Add.Text = "Add";
+            Add.UseVisualStyleBackColor = true;
+            Add.Click += Add_Click_1;
             // 
-            // txtUnit
+            // btnSearch
             // 
-            txtUnit.Location = new Point(153, 191);
-            txtUnit.Name = "txtUnit";
-            txtUnit.Size = new Size(209, 27);
-            txtUnit.TabIndex = 19;
+            btnSearch.Location = new Point(12, 207);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(90, 43);
+            btnSearch.TabIndex = 24;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
-            // txtDes
+            // txtSearchKho
             // 
-            txtDes.Location = new Point(153, 56);
-            txtDes.Name = "txtDes";
-            txtDes.Size = new Size(209, 27);
-            txtDes.TabIndex = 16;
+            txtSearchKho.Cursor = Cursors.IBeam;
+            txtSearchKho.Location = new Point(108, 216);
+            txtSearchKho.Name = "txtSearchKho";
+            txtSearchKho.Size = new Size(288, 27);
+            txtSearchKho.TabIndex = 25;
             // 
-            // txtQuantity
+            // panel3
             // 
-            txtQuantity.Location = new Point(153, 146);
-            txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(209, 27);
-            txtQuantity.TabIndex = 18;
+            panel3.BackColor = Color.FromArgb(128, 128, 255);
+            panel3.Controls.Add(label8);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1179, 40);
+            panel3.TabIndex = 27;
             // 
-            // label4
+            // label8
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(12, 98);
-            label4.Name = "label4";
-            label4.Size = new Size(70, 31);
-            label4.TabIndex = 11;
-            label4.Text = "Price ";
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label8.Location = new Point(475, 9);
+            label8.Name = "label8";
+            label8.Size = new Size(249, 28);
+            label8.TabIndex = 3;
+            label8.Text = "Information Merchandise";
+            label8.TextAlign = ContentAlignment.TopCenter;
             // 
-            // txtPrice
+            // panel4
             // 
-            txtPrice.Location = new Point(153, 98);
-            txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(209, 27);
-            txtPrice.TabIndex = 17;
+            panel4.BackColor = Color.FromArgb(128, 128, 255);
+            panel4.Controls.Add(label1);
+            panel4.Controls.Add(btnExit);
+            panel4.Dock = DockStyle.Bottom;
+            panel4.Location = new Point(0, 653);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(1179, 61);
+            panel4.TabIndex = 28;
             // 
-            // label5
+            // label1
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(12, 140);
-            label5.Name = "label5";
-            label5.Size = new Size(108, 31);
-            label5.TabIndex = 12;
-            label5.Text = "Quantity ";
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label1.Location = new Point(978, 24);
+            label1.Name = "label1";
+            label1.Size = new Size(181, 20);
+            label1.TabIndex = 4;
+            label1.Text = "Information Merchandise";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label7
+            // panel5
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(12, 242);
-            label7.Name = "label7";
-            label7.Size = new Size(112, 31);
-            label7.TabIndex = 14;
-            label7.Text = "Category ";
+            panel5.Controls.Add(txtRole);
+            panel5.Controls.Add(txtName1);
+            panel5.Controls.Add(txtId);
+            panel5.Controls.Add(label9);
+            panel5.Controls.Add(label10);
+            panel5.Controls.Add(label11);
+            panel5.Location = new Point(12, 69);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(287, 110);
+            panel5.TabIndex = 29;
             // 
-            // label6
+            // txtRole
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(12, 191);
-            label6.Name = "label6";
-            label6.Size = new Size(63, 31);
-            label6.TabIndex = 13;
-            label6.Text = "Unit ";
+            txtRole.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            txtRole.Enabled = false;
+            txtRole.Location = new Point(110, 70);
+            txtRole.Name = "txtRole";
+            txtRole.Size = new Size(174, 27);
+            txtRole.TabIndex = 9;
+            // 
+            // txtName1
+            // 
+            txtName1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            txtName1.Enabled = false;
+            txtName1.Location = new Point(110, 37);
+            txtName1.Name = "txtName1";
+            txtName1.Size = new Size(174, 27);
+            txtName1.TabIndex = 8;
+            // 
+            // txtId
+            // 
+            txtId.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            txtId.Enabled = false;
+            txtId.Location = new Point(110, 4);
+            txtId.Name = "txtId";
+            txtId.Size = new Size(174, 27);
+            txtId.TabIndex = 7;
+            // 
+            // label9
+            // 
+            label9.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.Location = new Point(15, 73);
+            label9.Name = "label9";
+            label9.Size = new Size(39, 20);
+            label9.TabIndex = 6;
+            label9.Text = "Role";
+            label9.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            label10.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.Location = new Point(15, 40);
+            label10.Name = "label10";
+            label10.Size = new Size(50, 20);
+            label10.TabIndex = 5;
+            label10.Text = "Name";
+            label10.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label11
+            // 
+            label11.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.Location = new Point(10, 7);
+            label11.Name = "label11";
+            label11.Size = new Size(84, 20);
+            label11.TabIndex = 4;
+            label11.Text = "Account ID";
+            label11.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // MerchandiseOrder
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1494, 811);
+            AutoScroll = true;
+            ClientSize = new Size(1179, 714);
+            Controls.Add(panel5);
+            Controls.Add(panel4);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(txtSearchKho);
             Controls.Add(btnSearch);
             Controls.Add(btnRefresh);
-            Controls.Add(panel1);
             Controls.Add(Add);
             Controls.Add(Delete);
             Controls.Add(Edit);
-            Controls.Add(Exit);
             Controls.Add(dgvKho);
-            Controls.Add(label1);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            Controls.Add(panel1);
             Name = "MerchandiseOrder";
             Text = "MerchandiseKho";
             Load += MerchandiseOrder_Load;
@@ -490,19 +628,18 @@
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
         private DataGridView dgvKho;
-        private Button Exit;
-        private Button Add;
-        private Button Edit;
-        private Button Delete;
-        private MenuStrip menuStrip1;
         private Panel panel1;
         private Button btnChemicals;
         private Button btnCanned;
@@ -519,20 +656,35 @@
         private Button btnAlcoho;
         private Button btnSnack;
         private Button btnRefresh;
+        private Label label6;
+        private Label label7;
+        private Label label5;
+        private TextBox txtPrice;
+        private Label label4;
+        private TextBox txtQuantity;
+        private TextBox txtDes;
+        private TextBox txtUnit;
+        private Label label3;
+        private ComboBox cbCategory;
+        private TextBox txtName;
+        private Label label2;
+        private Panel panel2;
+        private Button btnExit;
+        private Button Edit;
+        private Button Delete;
+        private Button Add;
         private Button btnSearch;
         private TextBox txtSearchKho;
-        private Panel panel2;
-        private Label label2;
-        private TextBox txtName;
-        private ComboBox cbCategory;
-        private Label label3;
-        private TextBox txtUnit;
-        private TextBox txtDes;
-        private TextBox txtQuantity;
-        private Label label4;
-        private TextBox txtPrice;
-        private Label label5;
-        private Label label7;
-        private Label label6;
+        private Panel panel3;
+        private Label label8;
+        private Panel panel4;
+        private Label label1;
+        private Panel panel5;
+        private TextBox txtRole;
+        private TextBox txtName1;
+        private TextBox txtId;
+        private Label label9;
+        private Label label10;
+        private Label label11;
     }
 }

@@ -85,7 +85,7 @@
             label1.FlatStyle = FlatStyle.System;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ControlText;
-            label1.Location = new Point(324, 6);
+            label1.Location = new Point(338, 6);
             label1.Name = "label1";
             label1.Size = new Size(113, 28);
             label1.TabIndex = 2;
@@ -108,7 +108,7 @@
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            label2.Location = new Point(640, 20);
+            label2.Location = new Point(602, 20);
             label2.Name = "label2";
             label2.Size = new Size(118, 20);
             label2.TabIndex = 3;
@@ -140,6 +140,7 @@
             dgvImportBill.AllowUserToAddRows = false;
             dgvImportBill.AllowUserToDeleteRows = false;
             dgvImportBill.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvImportBill.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvImportBill.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvImportBill.Location = new Point(306, 81);
             dgvImportBill.Name = "dgvImportBill";
@@ -203,27 +204,27 @@
             // txtRole
             // 
             txtRole.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            txtRole.Enabled = false;
             txtRole.Location = new Point(110, 70);
             txtRole.Name = "txtRole";
+            txtRole.ReadOnly = true;
             txtRole.Size = new Size(174, 27);
             txtRole.TabIndex = 9;
             // 
             // txtName
             // 
             txtName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            txtName.Enabled = false;
             txtName.Location = new Point(110, 37);
             txtName.Name = "txtName";
+            txtName.ReadOnly = true;
             txtName.Size = new Size(174, 27);
             txtName.TabIndex = 8;
             // 
             // txtId
             // 
             txtId.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            txtId.Enabled = false;
             txtId.Location = new Point(110, 4);
             txtId.Name = "txtId";
+            txtId.ReadOnly = true;
             txtId.Size = new Size(174, 27);
             txtId.TabIndex = 7;
             // 

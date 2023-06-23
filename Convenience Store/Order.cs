@@ -1,8 +1,10 @@
 ﻿using Service.Models;
+using Service.Repository;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace Convenience_Store;
 
@@ -13,6 +15,9 @@ public partial class Order : Form
     List<Merchandise> orderlist = new List<Merchandise>();
     double total = 0;
     int index = -1;
+
+    RepoAccount repoAccount = new RepoAccount();
+    private readonly Account _account;
     public Order(List<Account> accounts)
     {
         InitializeComponent();
@@ -24,7 +29,7 @@ public partial class Order : Form
             return;
         }
         this.accounts = accounts;
-        var _account = accounts.FirstOrDefault();
+        _account = accounts.FirstOrDefault();
         txtId.Text = _account.AccId.ToString();
         txtName.Text = _account.AccName;
         txtRole.Text = _account.AccRole.ToString();
@@ -45,15 +50,31 @@ public partial class Order : Form
                 total += bd.BillMerPrice * bd.BillMerQuanity;
             }
             txtTotal.Text = total.ToString();
+
+            /*dgvOrder.AutoGenerateColumns = false;
+            var newColumn = new DataGridViewTextBoxColumn();
+            newColumn.HeaderText = "MerName";
+            newColumn.Name = "MerName";
+            newColumn.DataPropertyName = "Mer.MerName";*/
+            /*newColumn.DataPropertyName = "Mer.MerName";*/
+            /*dgvOrder.Columns.Add(newColumn);
+            dgvOrder.Columns[newColumn.Index].ValueType = typeof(string);
+            for (int i = 0; i < orderlist.Count; i++)
+            {
+                // set the value of the new column for the current row
+                dgvOrder.Rows[i].Cells[newColumn.Index].Value = orderlist[i].MerName.ToString();
+            }*/
             dgvOrder.DataSource = new BindingSource() { DataSource = billDetails };
+
             /* dgvOrder.ReadOnly = true;*/
-            dgvOrder.Columns["BillDetailId"].Visible = false;
-            dgvOrder.Columns["BillId"].Visible = false;
+            dgvOrder.Columns[0].Visible = false;
+            dgvOrder.Columns[1].Visible = false;
             /*dgvOrder.Columns["MerId"].ReadOnly = true;
             dgvOrder.Columns[3].ReadOnly = true;
             dgvOrder.Columns["BillMerPrice"].ReadOnly = true;*/
-            dgvOrder.Columns["Bill"].Visible = false;
-            dgvOrder.Columns["Mer"].Visible = false;
+            dgvOrder.Columns[5].Visible = false;
+            dgvOrder.Columns[6].Visible = false;
+
 
         }
 
@@ -175,6 +196,7 @@ public partial class Order : Form
                 bd.MerId = mer.MerId;
                 bd.BillMerQuanity = 1;
                 bd.BillMerPrice = mer.MerPrice;
+                bd.Mer = mer;
                 billDetails.Add(bd);
             }
         }
@@ -200,6 +222,58 @@ public partial class Order : Form
         catch (Exception excep) { MessageBox.Show("Something is wrong with MerchandiseList."); }
     }
 
+
+    private void btnFinish_Click(object sender, EventArgs e)
+    {
+        if (accounts == null || accounts.Count != 1 || accounts.FirstOrDefault() == null)
+        {
+            accounts = null;
+            LoginForm form = new LoginForm();
+            this.Close();
+            return;
+        }
+        if (_account == null || orderlist == null || orderlist.Count < 1 || orderlist[0] == null)
+        {
+            orderlist = new List<Merchandise>();
+            MerchandiseList merchandiseList = new MerchandiseList(accounts, orderlist);
+            this.Close();
+            return;
+        }
+        if (billDetails == null || billDetails.Count < 1 || billDetails[0] == null)
+        {
+            orderToBill();
+            return;
+        }
+        loadGrid();
+        try
+        {
+
+            RepoBill rb = new RepoBill();
+            Bill b = new Bill();
+            b.BillCreatedTime = DateTime.Now;
+            b.AccId = _account.AccId;
+            b.Acc = _account;
+            b.MerId = orderlist[0].MerId;
+            b.Mer = orderlist[0];
+
+            rb.Create(b);
+            RepoBillDetail rbd = new RepoBillDetail();
+            foreach (BillDetail bd in billDetails)
+            {
+                bd.Bill = b;
+                bd.BillMerPrice *= bd.BillMerQuanity;
+                bd.BillId = b.BillId;
+                rbd.Create(bd);
+            }
+
+        }
+        catch (Exception excep)
+        {
+
+        }
+        this.orderlist = new List<Merchandise>();
+        loadGrid();
+    }
     private void txtId_TextChanged(object sender, EventArgs e)
     {
 
@@ -228,6 +302,7 @@ public partial class Order : Form
             else
             {
                 billDetails.RemoveAt(index);
+                orderlist.RemoveAt(index);
                 loadGrid();
             }
             index = -1;
@@ -238,5 +313,42 @@ public partial class Order : Form
 
         }
 
+    }
+
+    private void btnExit_Click(object sender, EventArgs e)
+    {
+        this.Close();
+        var link = repoAccount.GetAll().Where(a => a.AccId.Equals(_account.AccId));
+        HomePage homePage = new HomePage(link.ToList());
+        homePage.Show();
+        this.Close();
+    }
+
+    private void btnExport_Click(object sender, EventArgs e)
+    {
+        if (accounts == null || accounts.Count != 1 || accounts.FirstOrDefault() == null)
+        {
+            accounts = null;
+            LoginForm form = new LoginForm();
+            this.Close();
+            return;
+        }
+        if (_account == null || orderlist == null || orderlist.Count < 1 || orderlist[0] == null)
+        {
+            orderlist = new List<Merchandise>();
+            MerchandiseList merchandiseList = new MerchandiseList(accounts, orderlist);
+            this.Close();
+            return;
+        }
+        if (billDetails == null || billDetails.Count < 1 || billDetails[0] == null)
+        {
+            orderToBill();
+            return;
+        }
+
+        if (MessageBox.Show("Exported successfully!", "Notification", MessageBoxButtons.OKCancel) == DialogResult.OK)
+        {
+            return;
+        }
     }
 }

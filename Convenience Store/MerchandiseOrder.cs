@@ -33,10 +33,20 @@ namespace Convenience_Store
         private SqlConnection connection;
         int selectedMerchaId;
 
-        public MerchandiseOrder()
+        private readonly Account _account;
+        RepoAccount repoAccount = new RepoAccount();
+
+        public MerchandiseOrder(List<Account> accounts)
         {
             InitializeComponent();
+            _account = accounts.FirstOrDefault();
+            if (_account != null)
+            {
+                txtId.Text = _account.AccId.ToString();
+                txtName1.Text = _account.AccName;
+                txtRole.Text = _account.AccRole.ToString();
 
+            }
 
         }
         private void LoadDataFromDatabase()
@@ -216,7 +226,7 @@ namespace Convenience_Store
                         return;
                     }
                     Merchandise mer = new Merchandise
-                    {   
+                    {
 
                         MerId = selectedMerchaId,
                         MerName = txtName.Text,
@@ -330,6 +340,13 @@ namespace Convenience_Store
             selectedMerchaId = Convert.ToInt32(row.Cells[0].Value.ToString());
         }
 
-
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            var link = repoAccount.GetAll().Where(a => a.AccId.Equals(_account.AccId));
+            HomePage homePage = new HomePage(link.ToList());
+            homePage.Show();
+            this.Close();
+        }
     }
 }

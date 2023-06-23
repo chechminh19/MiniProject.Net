@@ -60,6 +60,10 @@
         {
             return ConvenienceStorecontext.Set<T>().FromSqlRaw(query, parameters).ToList();
         }
+         public T GetById(int id)
+        {
+            return Dbset.Find(id);
+        }
 
 
 

@@ -17,7 +17,7 @@ namespace Convenience_Store
     {
         private DataGridView f1dgvImportBill;
         private readonly Account _account;
-        
+
         public ImportPopup_Create(DataGridView dgvImportBill, Account _account)
         {
             InitializeComponent();

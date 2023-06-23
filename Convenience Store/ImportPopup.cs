@@ -22,7 +22,7 @@ namespace Convenience_Store
         private DataGridView f1dgvImportBill;
         List<ImportBill> f1list;
         private readonly Account _account;
-        
+
 
 
         public ImportPopup(DataGridView dgvImportBill, int index, DataGridViewRow SelectedRow, List<ImportBill> list, Account _account)
@@ -157,6 +157,127 @@ namespace Convenience_Store
                 MessageBox.Show("Error: " + error, "Notification", MessageBoxButtons.OK);
             }
 
+        }
+
+        private void txtBillTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void cbbMerUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtMerQuantity_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void txtMerName_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtMerPrice_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtMerId_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void dtpBillDate_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtProviderPhone_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtProName_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtBillName_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void txtBillId_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void txtAccId_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtAccName_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtRoleId_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
         }
     }
 

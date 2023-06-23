@@ -38,21 +38,21 @@ namespace Convenience_Store
             cbCategory.ValueMember = "idCategory";
         }
 
-            private void Add_Click(object sender, EventArgs e)
+        private void Add_Click(object sender, EventArgs e)
+        {
+            try
             {
-                try
-                {
 
-                    DialogResult saveCreate = MessageBox.Show("Xac nhan them ?", "Save",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (saveCreate == DialogResult.Yes)
-                    {
-                        string name = txtName.Text;
-                        string description = txtDes.Text;
-                        double price;
-                        string quantity = txtQuantity.Text;
-                        string unit = txtUnit.Text;
-                        int categoryId = (int)cbCategory.SelectedValue;
+                DialogResult saveCreate = MessageBox.Show("Xac nhan them ?", "Save",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (saveCreate == DialogResult.Yes)
+                {
+                    string name = txtName.Text;
+                    string description = txtDes.Text;
+                    double price;
+                    string quantity = txtQuantity.Text;
+                    string unit = txtUnit.Text;
+                    int categoryId = (int)cbCategory.SelectedValue;
 
 
                     if (!UtilsMerchandise.CheckValidString(name))
@@ -85,32 +85,41 @@ namespace Convenience_Store
 
 
                     Merchandise merchandise = new Merchandise();
-                        merchandise.MerName = name;
-                        merchandise.MerDescription = description;
-                        merchandise.MerPrice = Convert.ToDouble(txtPrice.Text);
-                        merchandise.MerQuantity = int.Parse(quantity);
-                        merchandise.MerUnit = unit;
-                        merchandise.MerIdCategory = categoryId;
+                    merchandise.MerName = name;
+                    merchandise.MerDescription = description;
+                    merchandise.MerPrice = Convert.ToDouble(txtPrice.Text);
+                    merchandise.MerQuantity = int.Parse(quantity);
+                    merchandise.MerUnit = unit;
+                    merchandise.MerIdCategory = categoryId;
 
-                        _repoMer.Create(merchandise);
+                    _repoMer.Create(merchandise);
 
-                        MessageBox.Show("Add Successfully!", "Notification", MessageBoxButtons.OK);
-                        this.Close();
-                    }
-                    else
-                    {
-                        return;
-                    }
+                    MessageBox.Show("Add Successfully!", "Notification", MessageBoxButtons.OK);
+                    this.Close();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Failed at: " + ex.Message, "Error", MessageBoxButtons.OK);
+                    return;
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed at: " + ex.Message, "Error", MessageBoxButtons.OK);
+            }
+        }
 
-        private void AddMerchandise_Load(object sender, EventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtDes.Clear();
+            txtName.Clear();
+            txtPrice.Clear();
+            txtQuantity.Clear();
+            txtUnit.Clear();
         }
     }
 
