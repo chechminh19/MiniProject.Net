@@ -2,6 +2,7 @@
 using Service.Repository;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using static System.Windows.Forms.LinkLabel;
@@ -21,6 +22,9 @@ public partial class Order : Form
     public Order(List<Account> accounts)
     {
         InitializeComponent();
+        this.Text = string.Empty;
+        this.ControlBox = false;
+
         if (accounts == null || accounts.Count != 1 || accounts.FirstOrDefault() == null)
         {
             accounts = null;
@@ -37,6 +41,11 @@ public partial class Order : Form
         txtAddress.Text = _account.AccAddress;
         loadGrid();
     }
+
+    [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+    private extern static void ReleaseCapture();
+    [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+    private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
     private void loadGrid()
     {
@@ -350,5 +359,29 @@ public partial class Order : Form
         {
             return;
         }
+    }
+
+    private void btnMinimize_Click(object sender, EventArgs e)
+    {
+        this.WindowState = FormWindowState.Minimized;
+    }
+
+    private void btnMaximize_Click(object sender, EventArgs e)
+    {
+        if (WindowState == FormWindowState.Normal)
+            this.WindowState = FormWindowState.Maximized;
+        else
+            this.WindowState = FormWindowState.Normal;
+    }
+
+    private void btnExit1_Click(object sender, EventArgs e)
+    {
+        Application.Exit();
+    }
+
+    private void lblOrderTitle_MouseDown(object sender, MouseEventArgs e)
+    {
+        ReleaseCapture();
+        SendMessage(this.Handle, 0x112, 0xf012, 0);
     }
 }

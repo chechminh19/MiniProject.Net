@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Service.Repository;
 using Service.Models;
+using System.Runtime.InteropServices;
 
 namespace Convenience_Store
 {
@@ -25,6 +26,9 @@ namespace Convenience_Store
         {
 
             InitializeComponent();
+            this.Text = string.Empty;
+            this.ControlBox = false;
+
             _account = accounts.FirstOrDefault();
             if (_account != null)
             {
@@ -35,10 +39,10 @@ namespace Convenience_Store
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void btnImport_Click(object sender, EventArgs e)
         {
@@ -69,7 +73,7 @@ namespace Convenience_Store
             using (var context = new ConvenienceStoreContext())
             {
                 var result = from ib in context.ImportBills
-                             join p in context.Providers on ib.ProId equals p.ProId
+                             join p in context.Providers on ib.ProId equals p.txtProviderID
                              join m in context.Merchandises on ib.MerId equals m.MerId
                              select new
                              {
@@ -96,7 +100,7 @@ namespace Convenience_Store
             using (var context = new ConvenienceStoreContext())
             {
                 var result = from ib in context.ImportBills
-                             join p in context.Providers on ib.ProId equals p.ProId
+                             join p in context.Providers on ib.ProId equals p.txtProviderID
                              join m in context.Merchandises on ib.MerId equals m.MerId
                              select new
                              {
@@ -151,7 +155,7 @@ namespace Convenience_Store
             using (var context = new ConvenienceStoreContext())
             {
                 var result = from ib in context.ImportBills
-                             join p in context.Providers on ib.ProId equals p.ProId
+                             join p in context.Providers on ib.ProId equals p.txtProviderID
                              join m in context.Merchandises on ib.MerId equals m.MerId
                              where m.MerName.Contains(search)
                              select new
@@ -176,6 +180,30 @@ namespace Convenience_Store
         private void btnExport_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("The Bill is being exported. Thank You !", "Notification", MessageBoxButtons.OK);
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else
+                this.WindowState = FormWindowState.Normal;
+        }
+
+        private void btnExit1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label2_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

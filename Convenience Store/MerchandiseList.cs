@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Convenience_Store;
 using Microsoft.VisualBasic.ApplicationServices;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System.Runtime.InteropServices;
 
 namespace Convenience_Store
 {
@@ -28,6 +29,9 @@ namespace Convenience_Store
         public MerchandiseList(List<Account> accounts, List<Merchandise> list)
         {
             InitializeComponent();
+            this.Text = string.Empty;
+            this.ControlBox = false;
+
             if (accounts == null || accounts.Count != 1 || accounts.FirstOrDefault() == null)
             {
                 accounts = null;
@@ -46,6 +50,11 @@ namespace Convenience_Store
             dgvMerchandise.DataSource = new BindingSource() { DataSource = searchlist };
             dgvCurrentlyAdd.DataSource = new BindingSource() { DataSource = orderlist };
         }
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -140,6 +149,12 @@ namespace Convenience_Store
             }
             index = -1;
             dgvCurrentlyAdd.DataSource = new BindingSource() { DataSource = orderlist };
+        }
+
+        private void label3_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

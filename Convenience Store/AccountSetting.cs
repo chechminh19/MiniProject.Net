@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -29,6 +30,9 @@ namespace Convenience_Store
         public AccountSetting(List<Account> accounts)
         {
             InitializeComponent();
+            this.Text = string.Empty;
+            this.ControlBox = false;
+
             _Account = new RepoAccount();
             _account = accounts.FirstOrDefault(); // Get the first account in the list
             if (_account != null)
@@ -51,13 +55,17 @@ namespace Convenience_Store
                 //cbRole.Text = _account.AccRole.ToString(); // Set the ComboBox value to the account's AccRole
                 txtAddress.Text = _account.AccAddress;
             }
-
             else
             {
                 MessageBox.Show("Please enter a valid name", "Error");
                 return;
             }
         }
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void txtId_TextChanged(object sender, EventArgs e)
         {
@@ -125,20 +133,6 @@ namespace Convenience_Store
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            // Bring HomePage form to the front or create a new instance if it doesn't exist
-            /* if (Application.OpenForms.OfType<HomePage>().Any())
-             {
-                 var homePageForm = Application.OpenForms.OfType<HomePage>().First();
-                 homePageForm.BringToFront();
-             }
-             else
-             {
-                 var link = _Account.GetAll().Where(a => a.AccId.Equals(_account.AccId));
-                 var homePageForm = new HomePage(link.ToList());
-                 homePageForm.Show();
-             }
- */
-            // Close this form
             this.Close();
             var link = _Account.GetAll().Where(a => a.AccId.Equals(_account.AccId));
             HomePage homePage = new HomePage(link.ToList());
@@ -161,6 +155,30 @@ namespace Convenience_Store
             {
                 return;
             }
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else
+                this.WindowState = FormWindowState.Normal;
+        }
+
+        private void btnExit1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 

@@ -164,7 +164,6 @@ VALUES
 ('Jasmine Kim', '123', '2020-01-10 21:00:00', '1996-11-11', '0123456789', 1, '45 Pine St');
 
 GO
-
 INSERT INTO [Customer] (cusName, cusGender, cusDOB, cusPhone)
 VALUES
 ('Alice Smith', 2, '1990-01-01', '1234567890'),

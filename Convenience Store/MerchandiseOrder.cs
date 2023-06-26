@@ -18,7 +18,7 @@ using System.Security.AccessControl;
 using System.Xml.Linq;
 using static Azure.Core.HttpHeader;
 using System.Diagnostics;
-
+using System.Runtime.InteropServices;
 
 namespace Convenience_Store
 {
@@ -39,6 +39,9 @@ namespace Convenience_Store
         public MerchandiseOrder(List<Account> accounts)
         {
             InitializeComponent();
+            this.Text = string.Empty;
+            this.ControlBox = false;
+
             _account = accounts.FirstOrDefault();
             if (_account != null)
             {
@@ -49,6 +52,12 @@ namespace Convenience_Store
             }
 
         }
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
         private void LoadDataFromDatabase()
         {
             string query = "SELECT * FROM Merchandise"; // Thay đổi câu truy vấn tùy thuộc vào cấu trúc của bảng sản phẩm của bạn
@@ -347,6 +356,30 @@ namespace Convenience_Store
             HomePage homePage = new HomePage(link.ToList());
             homePage.Show();
             this.Close();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else
+                this.WindowState = FormWindowState.Normal;
+        }
+
+        private void btnExit1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

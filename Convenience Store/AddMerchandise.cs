@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,11 +25,18 @@ namespace Convenience_Store
         public AddMerchandise()
         {
             InitializeComponent();
+            this.Text = string.Empty;
+            this.ControlBox = false;
+
             _repoCat = new RepoCategory();
             _repoMer = new RepoMerchandise();
             PrepareCategoryComboBox();
 
         }
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
         private void PrepareCategoryComboBox()
         {
             List<Category> categories = _repoCat.GetAll();
@@ -120,6 +128,12 @@ namespace Convenience_Store
             txtPrice.Clear();
             txtQuantity.Clear();
             txtUnit.Clear();
+        }
+
+        private void label8_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 

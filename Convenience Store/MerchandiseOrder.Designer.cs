@@ -66,6 +66,9 @@
             btnSearch = new Button();
             txtSearchKho = new TextBox();
             panel3 = new Panel();
+            btnMinimize = new Button();
+            btnMaximize = new Button();
+            btnExit1 = new Button();
             label8 = new Label();
             panel4 = new Panel();
             label1 = new Label();
@@ -486,12 +489,55 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(128, 128, 255);
+            panel3.Controls.Add(btnMinimize);
+            panel3.Controls.Add(btnMaximize);
+            panel3.Controls.Add(btnExit1);
             panel3.Controls.Add(label8);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(1179, 40);
             panel3.TabIndex = 27;
+            panel3.MouseDown += label1_MouseDown;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMinimize.FlatAppearance.BorderSize = 0;
+            btnMinimize.FlatStyle = FlatStyle.Flat;
+            btnMinimize.Image = Properties.Resources.Screenshot_2023_06_24_182809_removebg_preview1;
+            btnMinimize.Location = new Point(1124, 0);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(24, 24);
+            btnMinimize.TabIndex = 17;
+            btnMinimize.UseVisualStyleBackColor = false;
+            btnMinimize.Click += btnMinimize_Click;
+            // 
+            // btnMaximize
+            // 
+            btnMaximize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMaximize.FlatAppearance.BorderSize = 0;
+            btnMaximize.FlatStyle = FlatStyle.Flat;
+            btnMaximize.Image = Properties.Resources.Screenshot_2023_06_24_182506_removebg_preview;
+            btnMaximize.Location = new Point(1154, 0);
+            btnMaximize.Name = "btnMaximize";
+            btnMaximize.Size = new Size(24, 24);
+            btnMaximize.TabIndex = 18;
+            btnMaximize.UseVisualStyleBackColor = true;
+            btnMaximize.Click += btnMaximize_Click;
+            // 
+            // btnExit1
+            // 
+            btnExit1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnExit1.FlatAppearance.BorderSize = 0;
+            btnExit1.FlatStyle = FlatStyle.Flat;
+            btnExit1.Image = Properties.Resources.png_clipart_power_symbol_computer_icons_button_button_computer_electrical_switches_removebg_preview1;
+            btnExit1.Location = new Point(1094, 0);
+            btnExit1.Name = "btnExit1";
+            btnExit1.Size = new Size(24, 24);
+            btnExit1.TabIndex = 16;
+            btnExit1.UseVisualStyleBackColor = false;
+            btnExit1.Click += btnExit1_Click;
             // 
             // label8
             // 
@@ -503,6 +549,7 @@
             label8.TabIndex = 3;
             label8.Text = "Information Merchandise";
             label8.TextAlign = ContentAlignment.TopCenter;
+            label8.MouseDown += label1_MouseDown;
             // 
             // panel4
             // 
@@ -514,18 +561,20 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(1179, 61);
             panel4.TabIndex = 28;
+            panel4.MouseDown += label1_MouseDown;
             // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            label1.Location = new Point(978, 24);
+            label1.Location = new Point(998, 41);
             label1.Name = "label1";
             label1.Size = new Size(181, 20);
             label1.TabIndex = 4;
             label1.Text = "Information Merchandise";
             label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.MouseDown += label1_MouseDown;
             // 
             // panel5
             // 
@@ -686,5 +735,8 @@
         private Label label9;
         private Label label10;
         private Label label11;
+        private Button btnMinimize;
+        private Button btnMaximize;
+        private Button btnExit1;
     }
 }

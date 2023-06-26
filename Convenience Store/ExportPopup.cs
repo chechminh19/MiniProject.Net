@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net.WebSockets;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -23,6 +24,9 @@ namespace Convenience_Store
         public ExportPopup(List<Account> accounts, int eid)
         {
             InitializeComponent();
+            this.Text = string.Empty;
+            this.ControlBox = false;
+
             if (accounts == null || accounts.Count != 1 || accounts.FirstOrDefault() == null)
             {
                 accounts = null;
@@ -46,6 +50,11 @@ namespace Convenience_Store
 
 
         }
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void loadPopup(int eid)
         {
@@ -83,7 +92,7 @@ namespace Convenience_Store
                             cbbCusGender.Items.Add("Male");
                             cbbCusGender.Items.Add("Female");
                         }
-                        if (ebr.Customer_Gender.Equals("1")) { cbbCusGender.SelectedItem = "Male"; }
+                        if (ebr.Customer_Gender.Equals("Male")) { cbbCusGender.SelectedItem = "Male"; }
                         else cbbCusGender.SelectedItem = "Female";
                         loadCustomerCBB(ebr.Customer_ID);
                         loadManagerCBB(ebr.Manager_ID);
@@ -265,12 +274,19 @@ namespace Convenience_Store
                              where a.CusId == (int)cbbCusID.SelectedItem
                              select new
                              {
-                                 a.CusName
+                                 a.CusName,
+                                 a.CusGender,
+                                 a.CusDob,
+                                 a.CusPhone
                              };
                 if (result != null && result.Count() == 1 && result.FirstOrDefault() != null)
                 {
-                    txtCusName.Text = result.FirstOrDefault().CusName;
-
+                    var a = result.FirstOrDefault();
+                    txtCusName.Text = a.CusName;
+                    if (a.CusGender == 1) cbbCusGender.SelectedItem = "Male";
+                    else cbbCusGender.SelectedItem = "Female";
+                    dtpCusDOB.Value = a.CusDob;
+                    txtCusPhone.Text = a.CusPhone;
                 }
             }
         }
@@ -283,6 +299,30 @@ namespace Convenience_Store
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else
+                this.WindowState = FormWindowState.Normal;
+        }
+
+        private void btnExit1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label2_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

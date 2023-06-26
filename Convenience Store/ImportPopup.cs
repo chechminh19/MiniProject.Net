@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Mime;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,6 +29,9 @@ namespace Convenience_Store
         public ImportPopup(DataGridView dgvImportBill, int index, DataGridViewRow SelectedRow, List<ImportBill> list, Account _account)
         {
             InitializeComponent();
+            this.Text = string.Empty;
+            this.ControlBox = false;
+
             this.f1index = index;
             this.f1selectedRow = SelectedRow;
             this.f1dgvImportBill = dgvImportBill;
@@ -42,6 +46,10 @@ namespace Convenience_Store
 
         }
 
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -73,7 +81,7 @@ namespace Convenience_Store
             using (var context1 = new ConvenienceStoreContext())
             {
                 var updated = from ib in context1.ImportBills
-                              join p in context1.Providers on ib.ProId equals p.ProId
+                              join p in context1.Providers on ib.ProId equals p.txtProviderID
                               join m in context1.Merchandises on ib.MerId equals m.MerId
                               select new
                               {
@@ -121,7 +129,7 @@ namespace Convenience_Store
                     if (merQuantity <= 0 || merQuantity.ToString().Length == 0) throw new Exception("Merchandise Quanity can not be smaller than 0 or empty!");
 
                     var result = from ib in context.ImportBills
-                                 join p in context.Providers on ib.ProId equals p.ProId
+                                 join p in context.Providers on ib.ProId equals p.txtProviderID
                                  join m in context.Merchandises on ib.MerId equals m.MerId
                                  where ib.ImId == billId
                                  select new
@@ -159,125 +167,10 @@ namespace Convenience_Store
 
         }
 
-        private void txtBillTotal_TextChanged(object sender, EventArgs e)
+        private void label2_MouseDown(object sender, MouseEventArgs e)
         {
-
-        }
-
-        private void label15_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void cbbMerUnit_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtMerQuantity_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void txtMerName_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtMerPrice_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtMerId_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label17_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void dtpBillDate_ValueChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtProviderPhone_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtProName_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtBillName_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void txtBillId_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void txtAccId_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtAccName_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtRoleId_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void label16_Click(object sender, EventArgs e)
-        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 

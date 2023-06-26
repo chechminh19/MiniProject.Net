@@ -12,7 +12,7 @@ namespace Service.Models
             ImportBills = new HashSet<ImportBill>();
         }
 
-        public int ProId { get; set; }
+        public int txtProviderID { get; set; }
         public string ProName { get; set; }
         public int ProGender { get; set; }
         public string ProPhone { get; set; }

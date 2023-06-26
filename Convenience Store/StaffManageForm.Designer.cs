@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnMinimize = new Button();
+            btnMaximize = new Button();
+            btnExit1 = new Button();
             label6 = new Label();
             label1 = new Label();
             btnAdd = new Button();
@@ -62,6 +65,9 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(128, 128, 255);
+            panel1.Controls.Add(btnMinimize);
+            panel1.Controls.Add(btnMaximize);
+            panel1.Controls.Add(btnExit1);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
@@ -69,6 +75,46 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(918, 40);
             panel1.TabIndex = 1;
+            panel1.MouseDown += label1_MouseDown;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMinimize.FlatAppearance.BorderSize = 0;
+            btnMinimize.FlatStyle = FlatStyle.Flat;
+            btnMinimize.Image = Properties.Resources.Screenshot_2023_06_24_182809_removebg_preview1;
+            btnMinimize.Location = new Point(864, 0);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(24, 24);
+            btnMinimize.TabIndex = 17;
+            btnMinimize.UseVisualStyleBackColor = false;
+            btnMinimize.Click += btnMinimize_Click;
+            // 
+            // btnMaximize
+            // 
+            btnMaximize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMaximize.FlatAppearance.BorderSize = 0;
+            btnMaximize.FlatStyle = FlatStyle.Flat;
+            btnMaximize.Image = Properties.Resources.Screenshot_2023_06_24_182506_removebg_preview;
+            btnMaximize.Location = new Point(894, 0);
+            btnMaximize.Name = "btnMaximize";
+            btnMaximize.Size = new Size(24, 24);
+            btnMaximize.TabIndex = 18;
+            btnMaximize.UseVisualStyleBackColor = true;
+            btnMaximize.Click += btnMaximize_Click;
+            // 
+            // btnExit1
+            // 
+            btnExit1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnExit1.FlatAppearance.BorderSize = 0;
+            btnExit1.FlatStyle = FlatStyle.Flat;
+            btnExit1.Image = Properties.Resources.png_clipart_power_symbol_computer_icons_button_button_computer_electrical_switches_removebg_preview1;
+            btnExit1.Location = new Point(834, 0);
+            btnExit1.Name = "btnExit1";
+            btnExit1.Size = new Size(24, 24);
+            btnExit1.TabIndex = 16;
+            btnExit1.UseVisualStyleBackColor = false;
+            btnExit1.Click += btnExit1_Click;
             // 
             // label6
             // 
@@ -93,6 +139,7 @@
             label1.TabIndex = 2;
             label1.Text = "Staff Manager";
             label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.MouseDown += label1_MouseDown;
             // 
             // btnAdd
             // 
@@ -202,7 +249,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(10, 151);
+            label7.Location = new Point(8, 152);
             label7.Name = "label7";
             label7.Size = new Size(97, 20);
             label7.TabIndex = 16;
@@ -271,10 +318,11 @@
             panel2.Controls.Add(ExitButton);
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 502);
-            panel2.Margin = new Padding(2, 2, 2, 2);
+            panel2.Margin = new Padding(2);
             panel2.Name = "panel2";
             panel2.Size = new Size(918, 40);
             panel2.TabIndex = 24;
+            panel2.MouseDown += label1_MouseDown;
             // 
             // label2
             // 
@@ -287,6 +335,7 @@
             label2.Size = new Size(108, 20);
             label2.TabIndex = 11;
             label2.Text = "Staff Manager";
+            label2.MouseDown += label1_MouseDown;
             // 
             // panel3
             // 
@@ -304,7 +353,7 @@
             panel3.Controls.Add(txtPassword);
             panel3.Controls.Add(label7);
             panel3.Location = new Point(9, 79);
-            panel3.Margin = new Padding(2, 2, 2, 2);
+            panel3.Margin = new Padding(2);
             panel3.Name = "panel3";
             panel3.Size = new Size(387, 186);
             panel3.TabIndex = 25;
@@ -364,5 +413,8 @@
         private Panel panel2;
         private Panel panel3;
         private Label label2;
+        private Button btnMinimize;
+        private Button btnMaximize;
+        private Button btnExit1;
     }
 }

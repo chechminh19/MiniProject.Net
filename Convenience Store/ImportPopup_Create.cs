@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,6 +22,9 @@ namespace Convenience_Store
         public ImportPopup_Create(DataGridView dgvImportBill, Account _account)
         {
             InitializeComponent();
+            this.Text = string.Empty;
+            this.ControlBox = false;
+
             this.f1dgvImportBill = dgvImportBill;
             if (_account != null)
             {
@@ -30,6 +34,11 @@ namespace Convenience_Store
 
             }
         }
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
@@ -84,7 +93,7 @@ namespace Convenience_Store
                             ImDate = dtpBillDate.Value,
                             MerId = newMer.MerId,
                             ImProvider = newPro.ProName,
-                            ProId = newPro.ProId,
+                            ProId = newPro.txtProviderID,
 
                         };
                         context.ImportBills.Add(newBill);
@@ -110,7 +119,7 @@ namespace Convenience_Store
         {
 
             txtBillId.Text = "Auto Fill";
-            txtProId.Text = "Auto Fill";
+            txtProviderID.Text = "Auto Fill";
             cbbMerUnit.Items.AddRange(new object[] { "Pack", "Box", "Pcs", "Dozen", "Each" });
             cbbMerUnit.SelectedIndex = 0;
         }
@@ -148,7 +157,7 @@ namespace Convenience_Store
             using (var context1 = new ConvenienceStoreContext())
             {
                 var updated = from ib in context1.ImportBills
-                              join p in context1.Providers on ib.ProId equals p.ProId
+                              join p in context1.Providers on ib.ProId equals p.txtProviderID
                               join m in context1.Merchandises on ib.MerId equals m.MerId
                               select new
                               {
@@ -167,6 +176,30 @@ namespace Convenience_Store
                               };
                 f1dgvImportBill.DataSource = new BindingSource() { DataSource = updated.ToList() };
             }
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else
+                this.WindowState = FormWindowState.Normal;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label1_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

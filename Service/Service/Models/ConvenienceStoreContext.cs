@@ -299,12 +299,12 @@ namespace Service.Models
 
             modelBuilder.Entity<Provider>(entity =>
             {
-                entity.HasKey(e => e.ProId)
+                entity.HasKey(e => e.txtProviderID)
                     .HasName("PK__Provider__5BBBEEF5BBA9323C");
 
                 entity.ToTable("Provider");
 
-                entity.Property(e => e.ProId).HasColumnName("proId");
+                entity.Property(e => e.txtProviderID).HasColumnName("proId");
 
                 entity.Property(e => e.ProDob)
                     .HasColumnType("date")

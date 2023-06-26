@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -11,7 +12,7 @@ namespace Service.Models
         {
             ExportBills = new HashSet<ExportBill>();
         }
-
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CusId { get; set; }
         public string CusName { get; set; }
         public int CusGender { get; set; }

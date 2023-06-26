@@ -30,7 +30,10 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            btnMinimize = new Button();
+            btnMaximize = new Button();
             label6 = new Label();
+            btnExit1 = new Button();
             label1 = new Label();
             panel4 = new Panel();
             label2 = new Label();
@@ -60,13 +63,43 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(128, 128, 255);
+            panel1.Controls.Add(btnMinimize);
+            panel1.Controls.Add(btnMaximize);
             panel1.Controls.Add(label6);
+            panel1.Controls.Add(btnExit1);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(791, 40);
+            panel1.Size = new Size(801, 40);
             panel1.TabIndex = 0;
+            panel1.MouseDown += label2_MouseDown;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMinimize.FlatAppearance.BorderSize = 0;
+            btnMinimize.FlatStyle = FlatStyle.Flat;
+            btnMinimize.Image = Properties.Resources.Screenshot_2023_06_24_182809_removebg_preview1;
+            btnMinimize.Location = new Point(740, 6);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(24, 24);
+            btnMinimize.TabIndex = 17;
+            btnMinimize.UseVisualStyleBackColor = false;
+            btnMinimize.Click += btnMinimize_Click;
+            // 
+            // btnMaximize
+            // 
+            btnMaximize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMaximize.FlatAppearance.BorderSize = 0;
+            btnMaximize.FlatStyle = FlatStyle.Flat;
+            btnMaximize.Image = Properties.Resources.Screenshot_2023_06_24_182506_removebg_preview;
+            btnMaximize.Location = new Point(770, 6);
+            btnMaximize.Name = "btnMaximize";
+            btnMaximize.Size = new Size(24, 24);
+            btnMaximize.TabIndex = 18;
+            btnMaximize.UseVisualStyleBackColor = true;
+            btnMaximize.Click += btnMaximize_Click;
             // 
             // label6
             // 
@@ -77,6 +110,19 @@
             label6.Size = new Size(0, 20);
             label6.TabIndex = 10;
             // 
+            // btnExit1
+            // 
+            btnExit1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnExit1.FlatAppearance.BorderSize = 0;
+            btnExit1.FlatStyle = FlatStyle.Flat;
+            btnExit1.Image = Properties.Resources.png_clipart_power_symbol_computer_icons_button_button_computer_electrical_switches_removebg_preview1;
+            btnExit1.Location = new Point(710, 6);
+            btnExit1.Name = "btnExit1";
+            btnExit1.Size = new Size(24, 24);
+            btnExit1.TabIndex = 16;
+            btnExit1.UseVisualStyleBackColor = false;
+            btnExit1.Click += btnExit1_Click;
+            // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
@@ -85,12 +131,13 @@
             label1.FlatStyle = FlatStyle.System;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ControlText;
-            label1.Location = new Point(338, 6);
+            label1.Location = new Point(343, 6);
             label1.Name = "label1";
             label1.Size = new Size(113, 28);
             label1.TabIndex = 2;
             label1.Text = "Import Bill";
             label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.MouseDown += label2_MouseDown;
             // 
             // panel4
             // 
@@ -98,22 +145,24 @@
             panel4.Controls.Add(label2);
             panel4.Controls.Add(btnExit);
             panel4.Dock = DockStyle.Bottom;
-            panel4.Location = new Point(0, 462);
+            panel4.Location = new Point(0, 451);
             panel4.Name = "panel4";
-            panel4.Size = new Size(791, 40);
+            panel4.Size = new Size(801, 40);
             panel4.TabIndex = 1;
+            panel4.MouseDown += label2_MouseDown;
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            label2.Location = new Point(602, 20);
+            label2.Location = new Point(680, 20);
             label2.Name = "label2";
             label2.Size = new Size(118, 20);
             label2.TabIndex = 3;
             label2.Text = "Import Bill Page";
             label2.TextAlign = ContentAlignment.MiddleCenter;
+            label2.MouseDown += label2_MouseDown;
             // 
             // btnExit
             // 
@@ -132,7 +181,7 @@
             txtSearch.Location = new Point(305, 48);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Search Bill Based On Merchandise Name";
-            txtSearch.Size = new Size(379, 27);
+            txtSearch.Size = new Size(389, 27);
             txtSearch.TabIndex = 0;
             // 
             // dgvImportBill
@@ -147,7 +196,7 @@
             dgvImportBill.ReadOnly = true;
             dgvImportBill.RowHeadersWidth = 51;
             dgvImportBill.RowTemplate.Height = 29;
-            dgvImportBill.Size = new Size(473, 334);
+            dgvImportBill.Size = new Size(483, 323);
             dgvImportBill.TabIndex = 2;
             dgvImportBill.CellClick += dgvImportBill_CellClick;
             // 
@@ -158,7 +207,7 @@
             // btnSearch
             // 
             btnSearch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnSearch.Location = new Point(690, 46);
+            btnSearch.Location = new Point(700, 46);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(88, 29);
             btnSearch.TabIndex = 3;
@@ -169,7 +218,7 @@
             // btnExport
             // 
             btnExport.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnExport.Location = new Point(690, 421);
+            btnExport.Location = new Point(700, 410);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(88, 29);
             btnExport.TabIndex = 4;
@@ -180,7 +229,7 @@
             // btnDelete
             // 
             btnDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnDelete.Location = new Point(545, 421);
+            btnDelete.Location = new Point(555, 410);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(88, 29);
             btnDelete.TabIndex = 5;
@@ -267,7 +316,7 @@
             // btnImport
             // 
             btnImport.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnImport.Location = new Point(12, 421);
+            btnImport.Location = new Point(12, 410);
             btnImport.Name = "btnImport";
             btnImport.Size = new Size(120, 29);
             btnImport.TabIndex = 7;
@@ -278,7 +327,7 @@
             // btnEdit
             // 
             btnEdit.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnEdit.Location = new Point(211, 421);
+            btnEdit.Location = new Point(211, 410);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(88, 29);
             btnEdit.TabIndex = 8;
@@ -290,7 +339,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(791, 502);
+            ClientSize = new Size(801, 491);
             Controls.Add(btnEdit);
             Controls.Add(btnImport);
             Controls.Add(panel2);
@@ -301,6 +350,7 @@
             Controls.Add(txtSearch);
             Controls.Add(panel4);
             Controls.Add(panel1);
+            MinimumSize = new Size(579, 335);
             Name = "ImportBillForm";
             Text = "ImportBill";
             Load += ImportBill_Load;
@@ -339,5 +389,8 @@
         private TextBox txtId;
         private BindingSource importBillBindingSource;
         private Label label6;
+        private Button btnMinimize;
+        private Button btnMaximize;
+        private Button btnExit1;
     }
 }
